@@ -1,0 +1,16 @@
+#drop_zone {
+    border: 2px dashed #0087F7;
+    border-radius: 5px;
+    width: 300px;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    font-size: 20px;
+    color: #0087F7;
+    margin: 20px;
+}
+
+progress {
+    width: 300px;
+    height: 20px;
+}

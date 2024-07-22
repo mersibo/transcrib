@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Транскрибатор</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Загрузите файлы</h2>
+    <form id="upload_form" method="post" enctype="multipart/form-data" style="display:none;">
+        {% csrf_token %}
+        <input type="file" id="file_input" name="file">
+    </form>
+    <div id="drop_zone">Перетащите файлы сюда</div>
+    <progress id="progress_bar" value="0" max="100"></progress>
+    <a id="download_link" href="#" style="display:none;">Скачать файл</a>
+    <script src="{% static 'scripts.js' %}"></script>
+</body>
+</html>
