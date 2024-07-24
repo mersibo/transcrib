@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+vs9r7fi7i&%6jybu*^)=v9cj#3szcct^$u#f&am_d(5&@=fld'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['transcribatoremil.ru', 'www.transcribemilioo.ru', '127.0.0.1']
 
 

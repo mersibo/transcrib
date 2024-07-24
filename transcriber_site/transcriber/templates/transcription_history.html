@@ -1,19 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Transcription History</title>
-    <link rel="stylesheet" href="../static/styles.css">
-</head>
-<body>
-    <h2>Transcription History</h2>
-    <ul>
-        {% for transcription in transcriptions %}
-            <li>
-                <a href="{% url 'download_file' transcription %}">{{ transcription }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <button onclick="window.location.href='{% url 'index' %}'">Back to Upload</button>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Transcription History</title>
+        <link rel="stylesheet" href="../static/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2 class="page-title">Transcription History</h2>
+            <ul class="transcription-list">
+                {% for transcription in transcriptions %}
+                <li>
+                    <a class="transcription-link"
+                        href="{% url 'download_file' transcription %}">{{
+                        transcription }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <button class="back-button"
+                onclick="window.location.href='{% url 'index' %}'">Back to
+                Upload</button>
+        </div>
+    </body>
 </html>
+
+<style>
+    .container {
+        width: 80%;
+        max-width: 600px;
+        margin: auto auto;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        text-align: center;
+    }
+    
+    .page-title {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .transcription-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .transcription-list li {
+        padding: 10px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .transcription-link {
+        color: #5058e6;
+        text-decoration: none;
+        font-size: 18px;
+    }
+    
+    .transcription-link:hover {
+        text-decoration: underline;
+    }
+    
+    .back-button {
+        background-color: #5058e6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+    
+    .back-button:hover {
+        background-color: #3949ab;
+    }
+</style>

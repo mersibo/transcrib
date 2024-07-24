@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
+
     <head>
         <meta charset="UTF-8">
         <title>Транскрибатор</title>
         <link rel="stylesheet" href="../static/styles.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
+
     <body>
         <header>
             <h1>Транскрибатор</h1>
@@ -41,10 +43,14 @@
                     машина не справилась.</p>
             </div>
         </div>
+        <button class="history-button"
+            onclick="window.location.href='{% url 'transcription_history' %}';">
+            Просмотр истории транскрипций
+        </button>
         <footer>
             <p>&copy; 2024 ИИ сервис транскрибирования. Все права защищены.</p>
         </footer>
         <script src="../static/scripts.js"></script>
-        <button onclick="window.location.href='{% url 'transcription_history' %}';">View Transcription History</button>
     </body>
+
 </html>
