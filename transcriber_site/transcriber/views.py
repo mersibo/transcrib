@@ -19,9 +19,7 @@ def login_view(request):
                 login(request, user)
                 return redirect('index')
             else:
-                return render(request, 'login.html', {'form': form, 'error': 'Неверное имя пользователя или пароль'})
-        else:
-            return render(request, 'login.html', {'form': form})
+                form.add_error(None, 'Пожалуйста, введите правильные имя пользователя и пароль. Оба поля могут быть чувствительны к регистру.')
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
