@@ -65,3 +65,8 @@ def download_file(request, filename):
             return response
     else:
         return JsonResponse({'error': 'File not found'}, status=404)
+
+@login_required
+def transcription_history(request):
+    transcriptions = Transcription.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'transcription_history.html', {'transcriptions': transcriptions})
