@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transcription History</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <h2>Transcription History</h2>
+    <ul>
+        {% for transcription in transcriptions %}
+            <li>
+                <a href="{% url 'download_file' transcription %}">{{ transcription }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <button onclick="window.location.href='{% url 'index' %}'">Back to Upload</button>
+</body>
+</html>
