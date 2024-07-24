@@ -11,7 +11,7 @@ form {
 
 body {
     font-family: "Arial", sans-serif;
-    background-image: url("../static/images/world_map.svg"); /* Фон страницы */
+    background-image: url("../static/images/world_map.png"); /* Фон страницы */
     background-size: cover;
     background-position: center;
     color: #333;
