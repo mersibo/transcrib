@@ -5,6 +5,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from .forms import LoginForm
+from .models import Transcription
 import os
 from transcriber_tools.transcriber import transcribation
 
@@ -65,6 +66,7 @@ def download_file(request, filename):
             return response
     else:
         return JsonResponse({'error': 'File not found'}, status=404)
+
 
 @login_required
 def transcription_history(request):
