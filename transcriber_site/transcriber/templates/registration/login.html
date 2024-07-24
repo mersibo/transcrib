@@ -1,18 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-    {% if error %}
-        <p style="color:red">{{ error }}</p>
-    {% endif %}
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            width: 300px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #5C67F2;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #5C67F2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #5058E6;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        p {
+            text-align: start;
+            color: rgb(0, 0, 0);
+        }
+        .errorlist {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .errorlist.active {
+            opacity: 1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    </head>
+    <body>
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Login</h2>
+            <p>
+                <input type="text" name="username"
+                    value="{{ form.username.value }}" autofocus
+                    autocapitalize="none" autocomplete="username"
+                    maxlength="150" required id="id_username"
+                    placeholder="Username">
+                {% if form.username.errors %}
+                <div class="errorlist active">
+                    {% for error in form.username.errors %}
+                    <p style="color: red;">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </p>
+            <p>
+                <input type="password" name="password"
+                    autocomplete="current-password" required id="id_password"
+                    placeholder="Password">
+                {% if form.password.errors %}
+                <div class="errorlist active">
+                    {% for error in form.password.errors %}
+                    <p style="color: red;">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </p>
+            {% if error %}
+            <p style="color: red;" class="errorlist active">{{ error }}</p>
+            {% endif %}
+            <button type="submit">Login</button>
+        </form>
+    </body>
 </html>
