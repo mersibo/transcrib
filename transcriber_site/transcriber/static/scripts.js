@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let body = document.body;
     let progressBar = document.getElementById('progress_bar');
     let downloadLink = document.getElementById('download_link');
-
+    let fileInput = document.getElementById('file_input');
+    let uploadArea = document.getElementById('upload_area');
 
     body.ondragover = function(event) {
         event.preventDefault();
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fileInput.addEventListener('change', function(event) {
         if (this.files.length > 0) {
             uploadFile(this.files[0]);
-            progressBar.style.display = 'block'; 
+            progressBar.style.opacity = '1'; 
             uploadArea.classList.add('moving-up'); 
         }
     });
@@ -49,14 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 let response = JSON.parse(xhr.responseText);
                 downloadLink.href = response.download_url;
                 downloadLink.style.display = 'block';
-                alert('File uploaded and processed successfully');
+                alert('Файл успешно загружен и обработан');
             } else {
-                alert('An error occurred!');
+                alert('Произошла ошибка!');
             }
         };
 
         xhr.onerror = function() {
-            alert('Upload error: ' + xhr.statusText);
+            alert('Ошибка загрузки: ' + xhr.statusText);
         };
 
         xhr.send(formData);
