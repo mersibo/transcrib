@@ -1,31 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let dropZone = document.getElementById('drop_zone');
+    let body = document.body;
     let progressBar = document.getElementById('progress_bar');
     let downloadLink = document.getElementById('download_link');
 
-    dropZone.ondrop = function(e) {
-        e.preventDefault();
-        this.className = 'drop_zone';
-        uploadFile(e.dataTransfer.files[0]);
+
+    body.ondragover = function(event) {
+        event.preventDefault();
+        body.classList.add('dragging');
     };
 
-    dropZone.ondragover = function() {
-        this.className = 'drop_zone_hover';
-        return false;
+    body.ondragleave = function(event) {
+        event.preventDefault();
+        body.classList.remove('dragging');
     };
 
-    dropZone.ondragleave = function() {
-        this.className = 'drop_zone';
-        return false;
+    body.ondrop = function(event) {
+        event.preventDefault();
+        body.classList.remove('dragging');
+        if (event.dataTransfer.files.length > 0) {
+            var file = event.dataTransfer.files[0];
+            uploadFile(file);
+        }
     };
+
+    fileInput.addEventListener('change', function(event) {
+        if (this.files.length > 0) {
+            uploadFile(this.files[0]);
+            progressBar.style.display = 'block'; 
+            uploadArea.classList.add('moving-up'); 
+        }
+    });
 
     function uploadFile(file) {
         let formData = new FormData();
         formData.append('file', file);
-        
+
         let xhr = new XMLHttpRequest();
         xhr.open('POST', '/upload/', true);
-
         xhr.upload.onprogress = function(e) {
             if (e.lengthComputable) {
                 let percentage = (e.loaded / e.total) * 100;
@@ -42,6 +53,10 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 alert('An error occurred!');
             }
+        };
+
+        xhr.onerror = function() {
+            alert('Upload error: ' + xhr.statusText);
         };
 
         xhr.send(formData);

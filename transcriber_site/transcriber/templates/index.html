@@ -1,6 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8">
         <title>Транскрибатор</title>
@@ -8,15 +7,43 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-        <h2>Загрузите файлы</h2>
-        <form id="upload_form" method="post" enctype="multipart/form-data"
-            action="/upload/">
-            {% csrf_token %}
-            <input type="file" id="file_input" name="file">
-        </form>
-        <div id="drop_zone">Перетащите файлы сюда</div>
-        <progress id="progress_bar" value="0" max="100"></progress>
-        <a id="download_link" href="#" style="display:none;">Скачать файл</a>
-        <script src="{% static 'scripts.js' %}"></script>
+        <header>
+            <h1>Транскрибатор</h1>
+        </header>
+        <div id="upload_area">
+            <div id="drop_zone"
+                onclick="document.getElementById('file_input').click();">
+                Перетащите файлы сюда или кликните для выбора файла
+            </div>
+            <form id="upload_form" method="post" enctype="multipart/form-data"
+                action="/upload/" style="display: none;">
+                <input type="file" id="file_input" name="file">
+                <input type="submit" value="Загрузить файл">
+            </form>
+            <progress id="progress_bar" value="0" max="100"
+                style="width: 80%; height: 20px; display: none;"></progress>
+        </div>
+        <a id="download_link" href="#" style="display: none;">Скачать файл</a>
+        <div id="service-description">
+            <div>
+                <h3>Асинхронный</h3>
+                <p>Обрабатывайте аудио- или видеозаписи и получайте машинную
+                    транскрипцию за считанные минуты.</p>
+            </div>
+            <div>
+                <h3>Стриминг</h3>
+                <p>Получайте транскрипцию в реальном времени, как только ваше
+                    аудио проходит через нашу систему.</p>
+            </div>
+            <div>
+                <h3>Человеческая транскрипция</h3>
+                <p>Наши специалисты помогут улучшить качество транскрипции, если
+                    машина не справилась.</p>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 ИИ сервис транскрибирования. Все права защищены.</p>
+        </footer>
+        <script src="../static/scripts.js"></script>
     </body>
 </html>
