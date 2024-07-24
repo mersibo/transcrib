@@ -8,4 +8,5 @@ urlpatterns = [
     path('upload/', views.upload_file, name='upload'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('download/<str:filename>/', views.download_file, name='download_file'),
+    path('transcription_history/', views.transcription_history, name='transcription_history'),
 ]
