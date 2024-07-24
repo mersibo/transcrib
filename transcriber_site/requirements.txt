@@ -1,0 +1,7 @@
+Django==3.2.23
+docx==0.2.4
+moviepy==1.0.3
+pydub==0.25.1
+python_docx==1.1.2
+transformers==4.42.4
+whisper==1.1.10
